@@ -9,11 +9,12 @@ const bodyParser = require('body-parser'); // used to grab information from POST
 const app = express(); // define our app using express
 app.use(morgan('dev'));
 
-// Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
+require('./server/routes')(app);
 
 // a default catch-all route
 app.get('*', (req, res) => res.status(200).send({

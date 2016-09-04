@@ -1,7 +1,7 @@
 const should = require('chai').should(),
   expect = require('chai').expect,
   supertest = require('supertest'),
-  api = supertest('http://localhost:8080');
+  api = supertest('http://localhost:8000');
 
 describe('User', () => {
   it('should be created', (done) => {
@@ -33,7 +33,7 @@ describe('User', () => {
       });
   });
   it('should be an object with keys and values', (done) => {
-    api.get('/api/users/1')
+    api.get('/api/users/2')
       .set('Accept', 'application/json')
       .expect(200)
       .end((err, res) => {
@@ -49,7 +49,7 @@ describe('User', () => {
       });
   });
   it('should be updated with new details', (done) => {
-    api.put('/api/users/1')
+    api.put('/api/users/2')
       .set('Accept', 'application/json')
       .send({
         username: "joan",
@@ -67,7 +67,7 @@ describe('User', () => {
       });
   });
   it('should be deleted', (done) => {
-    api.delete('/api/users/1')
+    api.delete('/api/users/10')
     .set('Accept', 'application/json')
     .expect(204)
     .end((err, res) => {
